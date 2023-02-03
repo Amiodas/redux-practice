@@ -3,6 +3,7 @@ const { createStore } = require("redux");
 // Constant Initialize
 const INCREMENT = "INCREMENT";
 const DECREMENT = "DECREMENT";
+const RESET = "RESET";
 
 // 4 step must follow redux
 // 1. state
@@ -35,6 +36,12 @@ const decrementCounter = () => {
   };
 };
 
+const resetCounter = () => {
+  return {
+    type: RESET,
+  }
+}
+
 // create reducer
 // Reducer is a function is a pure function
 // a function must take a input and give a return value
@@ -55,6 +62,11 @@ const counterReducer = (state = initalCounterState, action) => {
         ...state,
         count: state.count - 1,
       };
+    case RESET: 
+    return {
+      ...state,
+      count: 0
+    }  
     default:
       state;
   }
@@ -75,3 +87,5 @@ store.subscribe(() => {
 // dispatch method
 store.dispatch(incrementCounter());
 store.dispatch(incrementCounter());
+store.dispatch(incrementCounter());
+store.dispatch(resetCounter());
